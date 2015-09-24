@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-- 2.1.2
+- 2.2.2
 deploy:
   provider: heroku
   api_key:
@@ -8,10 +8,6 @@ deploy:
   app: boiling-lowlands-3575
   on:
     repo: 5843435/rails_enpit
-test:
-  adapter: postgresql
-  database: travis_ci_test
-  username: postgres
 addons:
   postgresql: "9.3"
 before_script:
