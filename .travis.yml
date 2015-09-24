@@ -1,0 +1,21 @@
+language: ruby
+rvm:
+- 2.1.2
+deploy:
+  provider: heroku
+  api_key:
+    secure: XT2/LubpXjb77wGPa8z1DfHWOsRTiv/gEl1PUebjeKjbWEKhXC2HRxxvx5fITQ8G6HBKegQgSAA+hwcOy5cPo1/g88aBcsxvpJTcxzU1dtu1ZxH2UZJ+vi3+VrkRcg7rnt214gvYmjWmY/OUIhrzUnPYWY5N43jwMunMUbcwzoVKp/hjcAF+vj27WCig7aOyadohYeq31AFUmPRU0HpR8Ee8QBo8USf6NB/xpdNJx1Lgaq/AUJhhIlztjwlKTs4nNWvVlrZijFIfetPIoYWWoxs0eMgC5MUcM2VAz0kMz3lAj5/qPuBNxOpxxVdsi7JyiQCOuriGpk41QbSqS4Umg+kEa5qOfmfPY+tcG3cMg68dHs7EggEiy5NFoHeB+sBNQVybj6NHKPv6DGukIsEm+0IZtUIR5Bf3iDao+dTa6yVcaBBQgOUn1Iv2ACG4j4/hkaJtvdnBjAoidCd9hYcPEAf98tKUaC5droyMjzthF8KbJvy4OrlPJBfZo8l/s670D4qRx0xZ/8r8i+Ii3BWD4K4FyQh8QavEmODd16/LjKUNHDkwQnk8iJ1OdgXfAAO0VMIzTs0N+5GLUJ9qkGG8x+C9vvMwo9BS0ATriPk+nmfUlu0/XUGO66ILR1y2x5LNz3yApR2tUxcAl7TB/RlWFeaoOPLITtPclP8fzk978C8=
+  app: boiling-lowlands-3575
+  on:
+    repo: 5843435/test
+
+addons:
+  postgresql: "9.3"
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
+
+test:
+  adapter: postgresql
+  database: travis_ci_test
+  username: postgres
